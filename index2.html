@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message For You</title>
+    <style>
+        /* Modern, clean, and romantic styling */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4a4a4a;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-step {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 500;
+            /* Smooth fade-in animation for each text change */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .btn {
+            background-color: #ff477e;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #ff2a65;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Final choice buttons layout */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-yes { background-color: #2ec4b6; box-shadow: 0 4px 15px rgba(46, 196, 182, 0.3); }
+        .btn-yes:hover { background-color: #24a195; }
+        
+        .btn-no { background-color: #778da9; box-shadow: 0 4px 15px rgba(119, 141, 169, 0.3); }
+        .btn-no:hover { background-color: #61738c; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <p id="proposal-text" class="text-step">Hey Chetu...💚, I made something small for you. Click below to read it...</p>
+        
+        <div id="button-container">
+            <button class="btn" onclick="nextStep()">Next ❤️</button>
+        </div>
+    </div>
+
+    <script>
+        // Edit these strings to customize your story/proposal steps!
+        const steps = [
+            "From the moment we started talking, things just felt different.",
+            "I found myself smiling at my phone way more than I used to.",
+            "Every little moment with you has quickly become my favorite memory.",
+            "I appreciate who you are, and how amazing you make me feel.",
+            "Which brings me to what I really wanted to ask you..."
+        ];
+
+        let currentStep = 0;
+
+        function nextStep() {
+            const textElement = document.getElementById("proposal-text");
+            const buttonContainer = document.getElementById("button-container");
+
+            if (currentStep < steps.length) {
+                // Update the text to the next story piece
+                textElement.innerHTML = steps[currentStep];
+                currentStep++;
+            } else {
+                // The final proposal step
+                textElement.innerHTML = "Will you be Friend? 🌹";
+                
+                // Change the single button into "Yes" and "No" choices
+                buttonContainer.innerHTML = `
+                    <div class="btn-group">
+                        <button class="btn btn-yes" onclick="celebrate()">Yes!</button>
+                        <button class="btn btn-no" onclick="tryAgain()">No</button>
+                    </div>
+                `;
+            }
+        }
+
+        function celebrate() {
+            const textElement = document.getElementById("proposal-text");
+            const buttonContainer = document.getElementById("button-container");
+            
+            textElement.innerHTML = "Yay! You just made me the happiest person alive! 🥰✨ Let's celebrate!";
+            buttonContainer.innerHTML = ""; // Removes the buttons
+        }
+
+        function tryAgain() {
+            const textElement = document.getElementById("proposal-text");
+            // A playful reminder if she clicks no accidentally
+            textElement.innerHTML = "Wrong button! 😉 Try that again...";
+        }
+    </script>
+</body>
+</html>
